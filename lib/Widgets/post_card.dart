@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+final formmater = DateFormat('dd-MM-yyyy').add_jm();
 
 class PostCard extends StatelessWidget {
   String employeeName = '';
   DateTime dateTime;
   PostCard({super.key, required this.employeeName, required this.dateTime});
+
+  String get formattedDate {
+    return formmater.format(dateTime);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +31,18 @@ class PostCard extends StatelessWidget {
                     "lib/Assets/announcement-icon-symbol-premium-quality-isolated-vector-16005264-fotor-20230619162123.png",
                     width: 30)),
             title: Text(
-              'Happy Birthday Abdelrahman Sayed',
-              style: Theme.of(context).textTheme.bodyLarge,
+              'Happy Birthday $employeeName',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(fontFamily: "linerstd"),
             ),
             subtitle: Text(
-              'Time goes here',
-              style: Theme.of(context).textTheme.labelSmall,
+              "${formattedDate}",
+              style: Theme.of(context)
+                  .textTheme
+                  .labelSmall!
+                  .copyWith(color: Color(0xff999ca1)),
             ),
             tileColor: Colors.white,
             dense: false,

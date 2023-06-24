@@ -31,21 +31,19 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              ClockInCard(),
-              Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) => posts[index],
-                  itemCount: posts.length,
-                ),
-              )
-            ],
-          ),
+        physics: ScrollPhysics(),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ClockInCard(),
+            ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (context, index) => posts[index],
+              itemCount: posts.length,
+            )
+          ],
         ),
       ),
       bottomNavigationBar: const Tabs(),
